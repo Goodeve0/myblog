@@ -68,5 +68,5 @@ Vite 是一种新型前端构建工具，能够显著提升前端开发体验。
 
 为最每个生成的 ESM 模块化方式的 chunk 也对应生成一个 legacy chunk，同时使用 @babel/preset-env 转换（没错，Vite 的内部集成了 Babel），生成一个 SystemJS 模块，关于 SystemJS 可以看点击这里查看，它在浏览器中实现了模块化，用来加载有依赖关系的各个 chunk。
 生成 polyfill 包，包含 SystemJS 的运行时，同时包含由要兼容的目标浏览器版本和代码中的高级语法产生的 polyfill。
-生成 <script nomodule> 标签，并注入到 HTML 文件中，用来在不兼容 ESM 的老旧浏览器中加载 polyfill 和 legacy chunk。
+生成 `<script nomodule>` 标签，并注入到 HTML 文件中，用来在不兼容 ESM 的老旧浏览器中加载 polyfill 和 legacy chunk。
 如此可见，Vite 兼容低版本浏览器的能力就是来自于 @babel/preset-env 无疑了，都是生成 polyfill 和语法转换， 但是这不就和 webpack 一样了么，事实是 Vite 又帮我们多做了一层，那就是上面反复提到的原生浏览器模块化能力 ESM。

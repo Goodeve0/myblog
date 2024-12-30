@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from "node:url";
 import { getSidebar } from "./utils/getSidebar";
 
 export default defineConfig({
+  base: "/",
   // 标签上显示的网站标题
   title: "小爱同学",
   titleTemplate: "Blog",
