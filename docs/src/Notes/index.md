@@ -3,16 +3,16 @@ layout: page
 sidebar: false
 
 hero:
-  title: "Document"
-  subTitle: "📚 欢迎来到本项目的使用说明书"
+  title: "🐾Blogs"
+  subTitle: "📚 "
 
 types:
-  - name: "使用指南"
-    desc: "How to Use"
-    link: "/Notes/0tutorial/quickstart"
+  - name: "生活有感"
+    desc: "life stories"
+    link: "/Notes/LifeStory/"
     icon: "✨"
-  - name: "面经分享"
-    desc: "interview experiences"
+  - name: "学习笔记"
+    desc: "learning notes"
     link: "/Notes/Interviews/"
     icon: "🏃"
 # flow: true

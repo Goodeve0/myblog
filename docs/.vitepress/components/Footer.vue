@@ -5,7 +5,9 @@
     <p class="text-sm font-medium">{{ footer.copyright }}</p>
     <p class="text-sm font-medium">
       Theme |
-      <a href="https://github.com/ZbWeR/easy-vitepress-blog">easy-vitepress-blog</a>
+      <a href="https://github.com/ZbWeR/easy-vitepress-blog"
+        >easy-vitepress-blog</a
+      >
     </p>
   </footer>
 </template>

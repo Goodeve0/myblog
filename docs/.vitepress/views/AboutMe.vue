@@ -15,31 +15,31 @@
           />
         </div>
         <!-- Right-tags -->
-        <p
+        <!-- <p
           style="top: 32%"
           class="tag-bounce hidden sm:block sm:left-[69%] md:left-[66%] lg:left-[63%] xl:left-[60%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
         >
           🎵 二进制吟游诗人
-        </p>
-        <p
+        </p> -->
+        <!-- <p
           style="top: 50%"
           class="tag-bounce hidden sm:block sm:left-[69%] md:left-[66%] lg:left-[63%] xl:left-[60%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
         >
           绿茵场最佳气氛组⚽
-        </p>
+        </p> -->
         <!-- Left-tags -->
-        <p
+        <!-- <p
           style="top: 32%"
           class="tag-bounce hidden sm:block sm:left-[8%] md:left-[13%] lg:left-[21%] xl:left-[27%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
         >
           🌙 倒头就睡懒羊羊
-        </p>
-        <p
+        </p> -->
+        <!-- <p
           style="top: 50%"
           class="tag-bounce hidden sm:block sm:left-[8%] md:left-[13%] lg:left-[21%] xl:left-[27%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
         >
           宇宙无敌暴龙战士🚀
-        </p>
+        </p> -->
       </div>
       <!-- 概述与箴言 -->
       <div class="flex flex-col w-full mt-4">
@@ -49,10 +49,12 @@
             class="dark:from-sky-700 dark:to-teal-600 dark:border-slate-900 w-full flex flex-col justify-center rounded-xl border py-4 px-8 text-white md:w-[59%] bg-gradient-to-r from-sky-400 to-teal-400"
           >
             <p class="text-lg text-slate-50">你好，很高兴认识你 👋</p>
-            <h1 class="text-2xl font-bold xl:text-3xl lg:break-normal lg:break-words">
-              A Chinese undergraduate From UESTC
+            <h1
+              class="text-2xl font-bold xl:text-3xl lg:break-normal lg:break-words"
+            >
+              A Chinese undergraduate From WXU
             </h1>
-            <p class="text-slate-100">前端开发 / 产品设计 / 足球 🔥</p>
+            <p class="text-slate-100">前端开发 / 🔥</p>
           </div>
           <!-- 箴言 -->
           <div
@@ -66,7 +68,9 @@
                 </span>
                 <span class="hidden lg:inline-block"> Is Everywhere</span>
               </h1>
-              <h1 class="font-serif text-3xl tracking-widest md:text-2xl lg:text-3xl">
+              <h1
+                class="font-serif text-3xl tracking-widest md:text-2xl lg:text-3xl"
+              >
                 纵有<span class="font-bold text-sky-500">狂风</span>拔地起
               </h1>
               <h1 class="text-2xl leading-9 md:text-3xl">
@@ -80,7 +84,9 @@
         </div>
       </div>
       <!-- 简介与技术栈 -->
-      <div class="flex flex-col justify-between w-full gap-5 mt-4 md:gap-0 md:flex-row">
+      <div
+        class="flex flex-col justify-between w-full gap-5 mt-4 md:gap-0 md:flex-row"
+      >
         <!-- 简介 -->
         <div
           class="bg-stripe w-full md:w-[35%] bg-slate-50 border dark:bg-slate-800 dark:border-slate-900 p-4 rounded-xl"
@@ -88,8 +94,12 @@
           <p class="text-[12px]">简介</p>
           <div class="mt-2">
             <h1 class="text-xl">主修计算机科学与技术</h1>
-            <h1 class="text-xl">辅修<span class="text-pink-500">猫娘行为学</span></h1>
-            <h1 class="text-xl lg:text-xl md:text-base">梦想是做程序员烧烤领袖</h1>
+            <h1 class="text-xl">
+              辅修<span class="text-pink-500">猫娘行为学</span>
+            </h1>
+            <h1 class="text-xl lg:text-xl md:text-base">
+              梦想是做程序员烧烤领袖
+            </h1>
             <p></p>
           </div>
         </div>
@@ -188,13 +198,15 @@
         </div>
       </div>
       <!-- 图片与荣誉 -->
-      <div class="flex flex-col justify-between w-full gap-5 mt-4 md:gap-0 md:flex-row">
-        <!-- 图片 -->
-        <div
+      <!-- <div
+        class="flex flex-col justify-between w-full gap-5 mt-4 md:gap-0 md:flex-row"
+      > -->
+      <!-- 图片 -->
+      <!-- <div
           class="w-full md:w-[45%] honer-bg bg-center bg-no-repeat bg-cover rounded-xl h-52 sm:h-auto"
-        ></div>
-        <!-- 荣誉 -->
-        <div
+        ></div> -->
+      <!-- 荣誉 -->
+      <!-- <div
           class="bg-stripe w-full md:w-[50%] bg-slate-50 border dark:bg-slate-800 dark:border-slate-900 p-4 rounded-xl"
         >
           <p class="text-[12px]">荣誉墙</p>
@@ -203,11 +215,13 @@
             <p class="py-1">🏅 "创新创意创业"挑战赛省一等奖</p>
             <p class="py-1">🥉 蓝桥杯 Web 开发组国家三等奖</p>
             <p class="py-1">🥉 字节跳动前端青训大项目三等奖</p>
-          </div>
-        </div>
-      </div>
+          </div> 
+       </div> 
+       </div> -->
       <!-- 音乐/游戏 -->
-      <div class="flex flex-col justify-between w-full gap-5 mt-4 md:gap-0 md:flex-row">
+      <div
+        class="flex flex-col justify-between w-full gap-5 mt-4 md:gap-0 md:flex-row"
+      >
         <!-- 音乐 -->
         <div
           class="w-full md:w-[39%] rounded-xl min-h-[13rem] h-52 md:h-auto relative overflow-hidden sm:h-auto"
@@ -232,7 +246,9 @@
           ></div>
           <div class="relative z-10 flex flex-col justify-between h-full p-4">
             <p class="text-[12px] text-slate-50">电子竞技</p>
-            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">赛博种田 / FPS</h1>
+            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">
+              赛博种田 / FPS
+            </h1>
             <p class="self-end mt-2 text-sm text-right text-slate-100">
               守望先锋 / FarmTogether
             </p>
@@ -241,7 +257,9 @@
       </div>
 
       <!-- 运动/电影 -->
-      <div class="flex flex-col justify-between w-full gap-5 mt-4 md:gap-0 md:flex-row">
+      <div
+        class="flex flex-col justify-between w-full gap-5 mt-4 md:gap-0 md:flex-row"
+      >
         <!-- 电影 -->
         <div
           class="relative w-full md:min-h-[18rem] h-72 overflow-hidden md:w-[58%] rounded-xl"
@@ -256,21 +274,6 @@
             </h1>
             <p class="self-end mt-2 text-sm text-right text-slate-100">
               “不作恶,不快活！” ——《坏蛋联盟》
-            </p>
-          </div>
-        </div>
-        <!-- 运动 -->
-        <div
-          class="relative w-full md:min-h-[18rem] h-72 overflow-hidden md:w-[40%] rounded-xl"
-        >
-          <div
-            class="absolute w-full bg-center bg-no-repeat bg-cover h-72 sport-bg"
-          ></div>
-          <div class="relative flex flex-col justify-between h-full p-4">
-            <p class="text-[12px] text-slate-50">体育运动</p>
-            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">足球</h1>
-            <p class="self-end mt-2 text-sm text-right text-slate-100">
-              欢迎来到梅西走廊！
             </p>
           </div>
         </div>
