@@ -1,4 +1,4 @@
-# 老项目从 webpack5 迁移到 Vite 经验
+# 老项目从 Webpack5 迁移到 Vite 经验
 
 ## Vite
 
@@ -6,27 +6,28 @@
 
 Vite 是一种新型前端构建工具，能够显著提升前端开发体验。它主要由两部分组成：
 
-- 一个开发服务器，基于**原生 ES 模块**提供了丰富的内建功能，如**模块热更新（HMR）**。
-- 一套构建指令，使用**rollup**打包你的代码，并且它是预配置的，可输出用于生产环境的高度优化过的静态资源。
+- 一个开发服务器，基于 **原生 ES 模块** 提供了丰富的内建功能，如 **模块热更新（HMR）**。
+- 一套构建指令，使用 **Rollup** 打包代码，并且它是预配置的，可输出用于生产环境的高度优化过的静态资源。
 
 ### Vite 带来的收益
 
-1. 开发环境启动服务器速度快
-   - **依赖：**使用 esbuild 预构建依赖，比传统打包器预构建依赖快 10-100 倍，因为 esbuild 用 Go 语言编写，支持多核并行，而 Webpack 是基于单线程的 node.js，所以在这个阶段不如 Vite 快）
+1. **开发环境启动服务器速度快**
 
-![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486487216-cf542174-0502-4223-97ed-afa4d6301e5c.png)
+   - **依赖：** 使用 esbuild 预构建依赖，比传统打包器预构建依赖快 10-100 倍，因为 esbuild 用 Go 语言编写，支持多核并行，而 Webpack 是基于单线程的 Node.js，所以在这个阶段不如 Vite 快。
 
-    - **源码**：包含一些并非直接是 JavaScript 的文件，需要转换（例如 JSX，CSS）时常会被编辑且不需要所有源码同时被加载。Vite 采用原生 ESM 方式提供源码，实际上让浏览器接管了打包程序的部分工作：仅在浏览器请求时处理。动态加载当前所需内容，从而减少不必要的资源加载和处理。
+   ![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486487216-cf542174-0502-4223-97ed-afa4d6301e5c.png)
 
-![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486366409-0504577f-f6ea-4614-85da-69154ce1ce4c.png)
+   - **源码：** 包含一些并非直接是 JavaScript 的文件，需要转换（例如 JSX，CSS）时常会被编辑且不需要所有源码同时被加载。Vite 采用原生 ESM 方式提供源码，实际上让浏览器接管了打包程序的部分工作：仅在浏览器请求时处理。动态加载当前所需内容，从而减少不必要的资源加载和处理。
 
-![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486315975-7fd7ccfc-6739-4208-aeec-679c1be8d2a7.png)
+   ![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486366409-0504577f-f6ea-4614-85da-69154ce1ce4c.png)
 
-2. 几乎实时的模块热更新
+   ![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486315975-7fd7ccfc-6739-4208-aeec-679c1be8d2a7.png)
 
-`webpack` 热更新也是需要重新编译一遍所有模块，然后启动服务器的，换句话来说 `webpack` 的热更新速度和初次编译启动时间相差不了多少，这样会给开发者带来一些负面的体验感，比如你在改动一个组件样式之后，可能需要等待很长一段时间页面才会重新渲染。
+2. **几乎实时的模块热更新**
 
-3. <font style="color:rgb(37, 41, 51);">所需文件按需编译，避免编译用不到的文件</font>
+   Webpack 热更新需要重新编译所有模块，然后启动服务器，换句话来说 Webpack 的热更新速度和初次编译启动时间相差不多。这会给开发者带来一些负面的体验，比如修改组件样式后可能需要等待很长时间页面才会重新渲染。
+
+3. **所需文件按需编译，避免编译用不到的文件**
 
 ## 迁移中问题记录
 
@@ -34,37 +35,57 @@ Vite 是一种新型前端构建工具，能够显著提升前端开发体验。
 
 #### 动态注入
 
-- 在 Webpack 配置中，使用`HtmlWebpackPlugin`来动态注入 HTML 模板变量
+- 在 Webpack 配置中，使用 `HtmlWebpackPlugin` 来动态注入 HTML 模板变量：
 
-```vue
-new HtmlWebpackPlugin({ template: './src/index.html', // 指定模板文件 filename:
-'index.html', // 生成文件名 }),
-```
+  ```javascript
+  new HtmlWebpackPlugin({
+    template: "./src/index.html", // 指定模板文件
+    filename: "index.html", // 生成文件名
+  });
+  ```
 
-- 在 vite 中使用插件`vite-plugin-html`来替换
+- 在 Vite 中使用插件 `vite-plugin-html` 来替换：
 
-```vue
-createHtmlPlugin({ inject: { data: { title: 'Vite Example', }, }, }),
-```
+  ```javascript
+  createHtmlPlugin({
+    inject: {
+      data: {
+        title: "Vite Example",
+      },
+    },
+  });
+  ```
 
 #### CSS 处理方式不同
 
-- Webpack 使用 css-loader 和 style-loader 处理 CSS 文件
+- Webpack 使用 `css-loader` 和 `style-loader` 处理 CSS 文件：
 
-```vue
-rules: [ { test: /\.css$/, use: ['style-loader', 'css-loader'], }, ],
-```
+  ```javascript
+  rules: [
+    {
+      test: /\.css$/,
+      use: ["style-loader", "css-loader"],
+    },
+  ];
+  ```
 
 - Vite 原生支持 CSS，无需任何额外配置。
 
 #### 静态资源处理
 
-- Webpack 通过 file-loader 或 url-loader 加载资源
+- Webpack 通过 `file-loader` 或 `url-loader` 加载资源：
 
-```vue
-test: /\.(png|jpg|gif|svg)$/, use: [ { loader: 'file-loader', options: { name:
-'assets/[name].[hash].[ext]', }, },
-```
+  ```javascript
+  test: /\.(png|jpg|gif|svg)$/,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: 'assets/[name].[hash].[ext]',
+      },
+    },
+  ];
+  ```
 
 - Vite 使用内置的静态资源处理功能，无需额外的配置。
 
@@ -72,66 +93,87 @@ test: /\.(png|jpg|gif|svg)$/, use: [ { loader: 'file-loader', options: { name:
 
 #### 别名配置
 
-根据 vite 别名规则，vite.config.js 添加配置，把@/指向 src 目录
+根据 Vite 别名规则，`vite.config.js` 添加配置，把 `@/` 指向 `src` 目录：
 
-```vue
-resolve: { /** 添加alias规则 **/ alias: [ { find: '@/', replacement: '/src/' }
-], },
+```javascript
+resolve: {
+  alias: [
+    {
+      find: '@/ ',
+      replacement: '/src/',
+    },
+  ],
+},
 ```
 
 #### 添加后缀
 
-由于引入组件没有携带文件后缀.vue，会报错，有两种解决方案
+由于引入组件没有携带文件后缀 `.vue` 会报错，有两种解决方案：
 
-1. 手动<font style="color:rgb(51, 51, 51);background-color:rgb(255, 249, 249);">添加 .vue 后缀，但是项目这么庞大，很多地方都没有带后缀，全部改肯定不容易</font>
-2. <font style="color:rgb(51, 51, 51);background-color:rgb(255, 249, 249);">配置 vite.config.js 的</font>**<font style="color:rgb(51, 51, 51);background-color:rgb(255, 249, 249);">extensions</font>**<font style="color:rgb(51, 51, 51);background-color:rgb(255, 249, 249);">字段，来添加自动查找文件扩展名后缀  
-   </font><font style="color:rgb(51, 51, 51);background-color:rgb(255, 249, 249);">示例如下：</font>
+1. 手动添加 `.vue` 后缀，但项目庞大，很多地方都没有带后缀，全部改动难度较大。
+2. 配置 `vite.config.js` 的 `extensions` 字段，来自动查找文件扩展名后缀：
 
-```vue
-{ extensions: [".vue", ".js", ".json"], }
-```
+   ```javascript
+   {
+     extensions: [".vue", ".js", ".json"];
+   }
+   ```
 
 #### 动态导入
 
-webpack 中 require.context 示例代码：
+Webpack 中 `require.context` 示例代码：
 
-```vue
-const modules = require.context('./modules', false, /\.js$/);
-modules.keys().forEach((key) => { const module = modules(key);
-console.log(module.default); // 模块的默认导出内容 });
+```javascript
+const modules = require.context("./modules", false, /\.js$/);
+modules.keys().forEach((key) => {
+  const module = modules(key);
+  console.log(module.default); // 模块的默认导出内容
+});
 ```
 
-Vite 使用 import.meta.glob 替换
+Vite 使用 `import.meta.glob` 替换：
 
-```vue
-const modules = import.meta.glob('./modules/*.js'); for (const path in modules)
-{ modules[path]().then((module) => { console.log(module.default); //
-模块的默认导出内容 }); }
+```javascript
+const modules = import.meta.glob("./modules/*.js");
+for (const path in modules) {
+  modules[path]().then((module) => {
+    console.log(module.default); // 模块的默认导出内容
+  });
+}
 ```
 
-不难看出， 只有当 `modules['./modules/example.js']()` 被调用时，浏览器才会加载 `./modules/example.js`，避免一次性加载所有模块，减少启动时的资源消耗。比起`require.context`，`import.meta.glob` 提供了更灵活的加载方式，可以按需加载模块，提升性能。
+`import.meta.glob` 只有在 `modules['./modules/example.js']()` 被调用时，浏览器才会加载对应文件，避免一次性加载所有模块。
 
-#### css 全局变量
+#### CSS 全局变量
 
-<font style="color:rgb(37, 41, 51);">项目在 less 文件中定义了变量，并在 webpack 的配置中通过 </font>`style-resources-loader`<font style="color:rgb(37, 41, 51);"> 将其设置为了全局变量。</font>
+项目在 `less` 文件中定义了变量，并在 Webpack 配置中通过 `style-resources-loader` 设置为全局变量：
 
-```vue
-{ loader: 'style-resources-loader', options: { patterns:
-['src/styles/var.less'], }, },
+```javascript
+{
+  loader: 'style-resources-loader',
+  options: {
+    patterns: ['src/styles/var.less'],
+  },
+},
 ```
 
-<font style="color:rgb(37, 41, 51);">在 vite.config.js 中添加如下配置以设置全局变量</font>
+在 `vite.config.js` 中添加如下配置：
 
-```vue
-css: { preprocessorOptions: { less: { additionalData: `@import
-"src/styles/var.less";` }, }, },
+```javascript
+css: {
+  preprocessorOptions: {
+    less: {
+      additionalData: `@import "src/styles/var.less";`
+    },
+  },
+},
 ```
 
 #### 环境变量
 
-vite 对环境变量的访问需要通过`import.meta.环境变量名称`来访问，将`process.env`替换为`import.meta.env`
+Vite 对环境变量的访问需要通过 `import.meta.环境变量名称`，将 `process.env` 替换为 `import.meta.env`。
 
-环境变量是在`.env`文件里配置，要注意的是配置的变量必须要以`VITE_`开头，否则引用的时候找不到。
+环境变量在 `.env` 文件里配置，变量名必须以 `VITE_` 开头。
 
 ### 兼容性处理
 
@@ -139,11 +181,11 @@ vite 对环境变量的访问需要通过`import.meta.环境变量名称`来访�
 
 ##### 问题描述
 
-Vite 原生支持 ES Modules，但很多旧项目的依赖库仍使用 CommonJS（如某些未更新的 npm 包）。如果这些库不支持 ESM，直接迁移到 Vite 时会报错，比如 require is not defined。
+Vite 原生支持 ES Modules，但很多旧项目的依赖库仍使用 CommonJS。如果这些库不支持 ESM，迁移到 Vite 时会报错，比如 `require is not defined`。
 
 ##### 解决
 
-在 vite 中使用插件 vite-plugin-require-transform 或@originjs/vite-plugin-commonjs 来实现快速转换，以下是两插件在各方面的不同：
+在 Vite 中使用插件 `vite-plugin-require-transform` 或 `@originjs/vite-plugin-commonjs`。以下是两者的对比：
 
 | 特性           | vite-plugin-require-transform          | @originjs/vite-plugin-commonjs             |
 | -------------- | -------------------------------------- | ------------------------------------------ |
@@ -153,60 +195,67 @@ Vite 原生支持 ES Modules，但很多旧项目的依赖库仍使用 CommonJS�
 | **性能开销**   | 开销较低，转换范围较小                 | 可能较高，需要对 CommonJS 代码进行全面转换 |
 | **适配生态**   | 适合 Vite 环境中的小规模兼容需求       | 适用于更复杂的模块系统，兼容性更强         |
 
-综合项目情况考虑之后，选择@originjs/vite-plugin-commonjs 方案。插件再构建过程时需要进行语法转换，可能会增加一定的性能开销，小项目可以考虑手动替换。
+根据项目需求，选择 `@originjs/vite-plugin-commonjs`。
 
 #### 浏览器兼容性
 
 ##### 问题描述
 
-Vite5 基于原生的 ES 模块，默认支持的浏览器版本是现代浏览器，如 Chrome>=87、Firefox>=78、Safari>=14 等。
+Vite5 基于原生的 ES 模块，默认支持的浏览器版本是现代浏览器（如 Chrome >= 87、Firefox >= 78、Safari >= 14）。
 
 ##### 解决
 
-可以通过插件@vitejs/plugin-legacy 来支持传统浏览器，它将自动生成传统版本的 chunk 及与其相对应 ES 语言特性方面的 polyfill。兼容版本的 chunk**只会**在不支持原生 ESM 的浏览器中进行按需加载。
+通过插件 `@vitejs/plugin-legacy` 支持传统浏览器，它将自动生成传统版本的 chunk，并为不支持 ESM 的浏览器按需加载。
 
-legacy 的 targets 根据自己项目情况来进行配置，示例：
+示例配置：
 
-```vue
-legacy({ targets: ['ie >= 9'], additionalLegacyPolyfills:
-['regenerator-runtime/runtime'], })
+```javascript
+legacy({
+  targets: ["ie >= 9"],
+  additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
+});
 ```
 
 #### 依赖兼容问题
 
 ##### 问题描述
 
-项目依赖中有部分缺乏维护的个人项目，这些项目中会存在部分不符合 es module 的语法，vite 运行时会报错，因此需要对依赖库进行适配。
+项目依赖中存在部分不符合 ESM 语法的库，Vite 运行时会报错。
 
 ##### 解决
 
-有三种做法
+1. 使用 monorepo，将依赖库代码 fork 到子工程中，进行适配。
+2. 将库代码复制到项目中，但可能由于依赖变动导致异常。
+3. 替换为由大团队维护的知名库。
 
-1. 可以使用 monorepo 的方式，把依赖库的代码 fork 到项目中，成为一个子工程，在子工程中对代码做适配，然后作为项目源码链接到主项目中。
-2. 直接把库的代码复制到项目中，但是可能由于依赖发生变化而导致行为异常
-3. 替换为知名度高、大团队维护的库，并修改对库的调用
+# CSS 前缀问题
 
-#### css 前缀问题
+## 问题描述
 
-##### 问题描述
+原项目配置了 pocss-loader 来打包时自动加 CSS 前缀以兼容低版本浏览器，迁移到 Vite 后也需要处理该问题。
 
-原项目配置了 pocss-loader 来打包时自动加 css 前缀来兼容低版本浏览器，迁移到 vite 后也需要处理下
+## 解法
 
-##### 解法
+在 Vite 中可以采用 autoprefixer 来实现。安装 autoprefixer 依赖后，在 `vite.config.js` 的 `css.postcss.plugins` 里面添加 autoprefixer 插件。由于该插件默认只支持 CommonJS，所以要用 `require` 引入，后面配置要支持的目标浏览器：
 
-在 vite 中可以采用 autoprefixer 来实现，安装 autoprefixer 依赖后，在 vite.config.js 的 css.postcss.plugins 里面添加 autoprefixer 插件，由于该插件默认只支持 common.js，所以要用 require 引入，后面配置要支持的目标浏览器
-
-```plain
+```javascript
 css: {
-    postcss: {
-      plugins: [
-        require('autoprefixer')({
-          overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 9', '> 1%'],
-          grid: true,
-        }),
-      ]
-    }
+  postcss: {
+    plugins: [
+      require("autoprefixer")({
+        overrideBrowserslist: [
+          "Android 4.1",
+          "iOS 7.1",
+          "Chrome > 31",
+          "ff > 31",
+          "ie >= 9",
+          "> 1%",
+        ],
+        grid: true,
+      }),
+    ];
   }
+}
 ```
 
 ### 优化相关
