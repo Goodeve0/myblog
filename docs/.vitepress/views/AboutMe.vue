@@ -234,7 +234,7 @@
             <h1 class="mt-1.5 text-4xl font-bold text-white">R&B</h1>
             <h1 class="mt-1.5 text-4xl font-bold text-white">华语经典</h1>
             <h1 class="mt-1.5 text-4xl font-bold text-white">轻音乐</h1>
-            <p class="text-sm text-right text-slate-100">《Love Stroy》</p>
+            <p class="text-sm text-right text-slate-100">《Love Song》</p>
           </div>
         </div>
         <!-- 游戏 -->
