@@ -15,17 +15,17 @@
           />
         </div>
         <!-- Right-tags -->
-        <!-- <p
+        <p
           style="top: 32%"
           class="tag-bounce hidden sm:block sm:left-[69%] md:left-[66%] lg:left-[63%] xl:left-[60%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
         >
-          🎵 二进制吟游诗人
-        </p> -->
+          🎵
+        </p>
         <!-- <p
           style="top: 50%"
           class="tag-bounce hidden sm:block sm:left-[69%] md:left-[66%] lg:left-[63%] xl:left-[60%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
         >
-          绿茵场最佳气氛组⚽
+          绿茵场最佳气氛组
         </p> -->
         <!-- Left-tags -->
         <!-- <p
@@ -93,12 +93,12 @@
         >
           <p class="text-[12px]">简介</p>
           <div class="mt-2">
-            <h1 class="text-xl">主修计算机科学与技术</h1>
+            <h1 class="text-xl">平平无奇大学生</h1>
             <h1 class="text-xl">
-              辅修<span class="text-pink-500">猫娘行为学</span>
+              口号是<span class="text-pink-500">吃点好的</span>
             </h1>
             <h1 class="text-xl lg:text-xl md:text-base">
-              梦想是做程序员烧烤领袖
+              保持乐观也是一种天赋⭐
             </h1>
             <p></p>
           </div>
@@ -231,8 +231,8 @@
           ></div>
           <div class="relative z-10 p-4">
             <p class="text-[12px] text-slate-200">音乐喜好</p>
-            <h1 class="mt-1.5 text-4xl font-bold text-white">古典、</h1>
-            <h1 class="mt-1.5 text-4xl font-bold text-white">欧美流行、</h1>
+            <h1 class="mt-1.5 text-4xl font-bold text-white">R&B</h1>
+            <h1 class="mt-1.5 text-4xl font-bold text-white">华语经典</h1>
             <h1 class="mt-1.5 text-4xl font-bold text-white">轻音乐</h1>
             <p class="text-sm text-right text-slate-100">《Love Stroy》</p>
           </div>
@@ -245,13 +245,9 @@
             class="absolute w-full h-full bg-center bg-no-repeat bg-cover game-bg"
           ></div>
           <div class="relative z-10 flex flex-col justify-between h-full p-4">
-            <p class="text-[12px] text-slate-50">电子竞技</p>
-            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">
-              赛博种田 / FPS
-            </h1>
-            <p class="self-end mt-2 text-sm text-right text-slate-100">
-              守望先锋 / FarmTogether
-            </p>
+            <p class="text-[12px] text-slate-50"></p>
+            <h1 class="flex-1 mt-2 text-4xl font-bold text-white"></h1>
+            <p class="self-end mt-2 text-sm text-right text-slate-100"></p>
           </div>
         </div>
       </div>
@@ -268,13 +264,9 @@
             class="absolute w-full bg-center bg-no-repeat bg-cover h-72 movie-bg"
           ></div>
           <div class="relative z-10 flex flex-col justify-between h-full p-4">
-            <p class="text-[12px] text-slate-50">兴趣爱好</p>
-            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">
-              科幻 / <br />动漫影视剧
-            </h1>
-            <p class="self-end mt-2 text-sm text-right text-slate-100">
-              “不作恶,不快活！” ——《坏蛋联盟》
-            </p>
+            <p class="text-[12px] text-slate-50"></p>
+            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">/ <br /></h1>
+            <p class="self-end mt-2 text-sm text-right text-slate-100"></p>
           </div>
         </div>
       </div>
