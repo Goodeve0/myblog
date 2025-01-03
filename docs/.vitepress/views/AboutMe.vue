@@ -19,7 +19,7 @@
           style="top: 32%"
           class="tag-bounce hidden sm:block sm:left-[69%] md:left-[66%] lg:left-[63%] xl:left-[60%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
         >
-          🎵
+          🎵 ktv最佳气氛组
         </p>
         <!-- <p
           style="top: 50%"
@@ -28,12 +28,12 @@
           绿茵场最佳气氛组
         </p> -->
         <!-- Left-tags -->
-        <!-- <p
+        <p
           style="top: 32%"
           class="tag-bounce hidden sm:block sm:left-[8%] md:left-[13%] lg:left-[21%] xl:left-[27%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
         >
-          🌙 倒头就睡懒羊羊
-        </p> -->
+          🌿 a股小韭菜
+        </p>
         <!-- <p
           style="top: 50%"
           class="tag-bounce hidden sm:block sm:left-[8%] md:left-[13%] lg:left-[21%] xl:left-[27%] absolute px-3 py-0.5 text-sm font-bold rounded-full shadow-[0px_0px_1px_1px#eee]"
@@ -54,7 +54,7 @@
             >
               A Chinese undergraduate From WXU
             </h1>
-            <p class="text-slate-100">前端开发 / 🔥</p>
+            <p class="text-slate-100">前端开发</p>
           </div>
           <!-- 箴言 -->
           <div
@@ -63,15 +63,17 @@
             <p class="text-[12px]">箴言</p>
             <div>
               <h1 class="text-3xl leading-9">
-                <span class="hidden font-bold text-teal-400 md:inline-block"
-                  >Miracle&nbsp;
+                <span class="hidden font-bold text-sky-500 md:inline-block"
+                  >YOLO~&nbsp;
                 </span>
-                <span class="hidden lg:inline-block"> Is Everywhere</span>
               </h1>
               <h1
                 class="font-serif text-3xl tracking-widest md:text-2xl lg:text-3xl"
               >
-                纵有<span class="font-bold text-sky-500">狂风</span>拔地起
+                <span class="font-bold text-sky-500">y</span>ou
+                <span class="font-bold text-sky-500">o</span>nly
+                <span class="font-bold text-sky-500">l</span>ive
+                <span class="font-bold text-sky-500">o</span>nce😉
               </h1>
               <h1 class="text-2xl leading-9 md:text-3xl">
                 <span class="inline-block font-bold text-teal-400 md:hidden"
@@ -95,7 +97,7 @@
           <div class="mt-2">
             <h1 class="text-xl">平平无奇大学生</h1>
             <h1 class="text-xl">
-              口号是<span class="text-pink-500">吃点好的</span>
+              口号是<span class="font-bold text-pink-500">吃点好的</span>
             </h1>
             <h1 class="text-xl lg:text-xl md:text-base">
               保持乐观也是一种天赋⭐
@@ -233,8 +235,8 @@
             <p class="text-[12px] text-slate-200">音乐喜好</p>
             <h1 class="mt-1.5 text-4xl font-bold text-white">R&B</h1>
             <h1 class="mt-1.5 text-4xl font-bold text-white">华语经典</h1>
-            <h1 class="mt-1.5 text-4xl font-bold text-white">轻音乐</h1>
-            <p class="text-sm text-right text-slate-100">《Love Song》</p>
+            <h1 class="mt-1.5 text-4xl font-bold text-white">纯音乐</h1>
+            <p class="text-sm text-right text-slate-100">《酷爱》</p>
           </div>
         </div>
         <!-- 游戏 -->
@@ -245,9 +247,19 @@
             class="absolute w-full h-full bg-center bg-no-repeat bg-cover game-bg"
           ></div>
           <div class="relative z-10 flex flex-col justify-between h-full p-4">
-            <p class="text-[12px] text-slate-50"></p>
-            <h1 class="flex-1 mt-2 text-4xl font-bold text-white"></h1>
-            <p class="self-end mt-2 text-sm text-right text-slate-100"></p>
+            <p class="text-[12px] text-slate-50">番剧电影</p>
+            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">
+              《四月是你的谎言》
+            </h1>
+            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">
+              《边缘行者》
+            </h1>
+            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">
+              《海上钢琴师》
+            </h1>
+            <p class="self-end mt-2 text-sm text-right text-slate-100">
+              没事就爱看这种治愈的
+            </p>
           </div>
         </div>
       </div>
@@ -258,16 +270,11 @@
       >
         <!-- 电影 -->
         <div
-          class="relative w-full md:min-h-[18rem] h-72 overflow-hidden md:w-[58%] rounded-xl"
+          class="relative w-full md:min-h-[18rem] h-[400px] overflow-hidden md:w-[100%] rounded-xl"
         >
           <div
-            class="absolute w-full bg-center bg-no-repeat bg-cover h-72 movie-bg"
+            class="absolute w-full bg-center bg-no-repeat bg-cover h-[400px] movie-bg"
           ></div>
-          <div class="relative z-10 flex flex-col justify-between h-full p-4">
-            <p class="text-[12px] text-slate-50"></p>
-            <h1 class="flex-1 mt-2 text-4xl font-bold text-white">/ <br /></h1>
-            <p class="self-end mt-2 text-sm text-right text-slate-100"></p>
-          </div>
         </div>
       </div>
     </div>
