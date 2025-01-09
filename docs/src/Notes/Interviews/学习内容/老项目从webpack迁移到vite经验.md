@@ -15,13 +15,13 @@ Vite 是一种新型前端构建工具，能够显著提升前端开发体验。
 
    - **依赖：** 使用 esbuild 预构建依赖，比传统打包器预构建依赖快 10-100 倍，因为 esbuild 用 Go 语言编写，支持多核并行，而 Webpack 是基于单线程的 Node.js，所以在这个阶段不如 Vite 快。
 
-   ![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486487216-cf542174-0502-4223-97ed-afa4d6301e5c.png)
+   ![alt text](image.png)
 
    - **源码：** 包含一些并非直接是 JavaScript 的文件，需要转换（例如 JSX，CSS）时常会被编辑且不需要所有源码同时被加载。Vite 采用原生 ESM 方式提供源码，实际上让浏览器接管了打包程序的部分工作：仅在浏览器请求时处理。动态加载当前所需内容，从而减少不必要的资源加载和处理。
 
-   ![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486366409-0504577f-f6ea-4614-85da-69154ce1ce4c.png)
+   ![alt text](image-1.png)
 
-   ![](https://cdn.nlark.com/yuque/0/2024/png/42817320/1735486315975-7fd7ccfc-6739-4208-aeec-679c1be8d2a7.png)
+   ![alt text](image-2.png)
 
 2. **几乎实时的模块热更新**
 
@@ -142,7 +142,7 @@ for (const path in modules) {
 }
 ```
 
-`import.meta.glob` 只有在 `modules['./modules/example.js']()` 被调用时，浏览器才会加载对应文件，避免一次性加载所有模块。
+`import.meta.glob` 只有在 `modules['./modules/example.js']()` 被调用时，浏览器才会加载对应文件，避免一次性加载所有模块减少启动时的资源消耗。比起 require.context，提供了更灵活的加载方式，可以按需加载模块，提升性能。
 
 #### CSS 全局变量
 
@@ -195,7 +195,7 @@ Vite 原生支持 ES Modules，但很多旧项目的依赖库仍使用 CommonJS�
 | **性能开销**   | 开销较低，转换范围较小                 | 可能较高，需要对 CommonJS 代码进行全面转换 |
 | **适配生态**   | 适合 Vite 环境中的小规模兼容需求       | 适用于更复杂的模块系统，兼容性更强         |
 
-根据项目需求，选择 `@originjs/vite-plugin-commonjs`。
+根据项目需求，选择 `@originjs/vite-plugin-commonjs`。插件再构建过程时需要进行语法转换，可能会增加一定的性能开销，小项目可以考虑手动替换。
 
 #### 浏览器兼容性
 
@@ -205,7 +205,7 @@ Vite5 基于原生的 ES 模块，默认支持的浏览器版本是现代浏览�
 
 ##### 解决
 
-通过插件 `@vitejs/plugin-legacy` 支持传统浏览器，它将自动生成传统版本的 chunk，并为不支持 ESM 的浏览器按需加载。
+通过插件 `@vitejs/plugin-legacy` 支持传统浏览器，它将自动生成传统版本的 chunk 及与其相对应 ES 语言特性方面的 polyfill。兼容版本的 chunk**只会**在不支持原生 ESM 的浏览器中进行按需加载。
 
 示例配置：
 
@@ -220,23 +220,23 @@ legacy({
 
 ##### 问题描述
 
-项目依赖中存在部分不符合 ESM 语法的库，Vite 运行时会报错。
+项目依赖中有部分缺乏维护的个人项目，这些项目中会存在部分不符合 ESM 语法，Vite 运行时会报错，因此需要对依赖库进行适配。
 
 ##### 解决
 
-1. 使用 monorepo，将依赖库代码 fork 到子工程中，进行适配。
-2. 将库代码复制到项目中，但可能由于依赖变动导致异常。
+1. 使用 monorepo，将依赖库代码 fork 到项目中成为一个子工程，对子工程的代码进行适配，然后作为项目源码链接到主项目中。
+2. 将直接库代码复制到项目中，但可能由于依赖变动导致异常。
 3. 替换为由大团队维护的知名库。
 
-# CSS 前缀问题
+#### CSS 前缀问题
 
-## 问题描述
+##### 问题描述
 
 原项目配置了 pocss-loader 来打包时自动加 CSS 前缀以兼容低版本浏览器，迁移到 Vite 后也需要处理该问题。
 
-## 解法
+##### 解法
 
-在 Vite 中可以采用 autoprefixer 来实现。安装 autoprefixer 依赖后，在 `vite.config.js` 的 `css.postcss.plugins` 里面添加 autoprefixer 插件。由于该插件默认只支持 CommonJS，所以要用 `require` 引入，后面配置要支持的目标浏览器：
+在 Vite 中可以采用`autoprefixer`来实现。安装`autoprefixer`依赖后，在 `vite.config.js` 的 `css.postcss.plugins` 里面添加 autoprefixer 插件。由于该插件默认只支持`CommonJS`，所以要用 `require` 引入，后面配置要支持的目标浏览器：
 
 ```javascript
 css: {

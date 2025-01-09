@@ -49,7 +49,7 @@ loader 的加载是 webpack 在 runloader 的时候执行的，调用 loader-run
 
 pitch 会有熔断效果，这是什么意思呢，就是在这个过程中如果任何 pitch 有返回值（非 undefined），则 loader 链被阻断。webpack 会跳过后面所有的的 pitch 和 loader，直接进入上一个 loader 。
 
-!https://cdn.nlark.com/yuque/0/2024/png/42817320/1730551371479-b92ed740-7552-4336-aa40-75be1a308d8d.png
+![alt text](image.png)
 
 话题说回来，pitch 方法有三个参数：
 
