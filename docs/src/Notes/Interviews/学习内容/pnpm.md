@@ -60,7 +60,7 @@ node_modules
 
 然而，有些依赖包还是会在自己的目录下有一个 `node_modules` 文件夹，出现嵌套的情况，例如 [yarn-example](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fzkochan%2Fcomparing-node-modules%2Ftree%2Fmaster%2Fyarn-example) 下的`http-errors` 依赖包就有自己的 `node_modules`，原因是：
 
-当一个项目的多个依赖包需要同一个库的不同版本时，**yarn 只能将一个版本的库提升到顶层**`**node_modules**`**目录中。** 对于需要**这个库其他版本**的依赖，yarn 仍然需要在这些依赖包的目录下创建一个嵌套的 `node_modules` 来存放不同版本的包
+当一个项目的多个依赖包需要同一个库的不同版本时，**yarn 只能将一个版本的库提升到顶层**`node_modules`**目录中。** 对于需要**这个库其他版本**的依赖，yarn 仍然需要在这些依赖包的目录下创建一个嵌套的 `node_modules` 来存放不同版本的包
 
 比如，包 A 依赖于 `lodash@4.0.0`，而包 B 依赖于 `lodash@3.0.0`。由于这两个版本的 `lodash` 不能合并，`yarn` 会将 `lodash@4.0.0` 提升到顶层 `node_modules`，而 `lodash@3.0.0` 则被嵌套在包 B 的 `node_modules` 目录下。
 
